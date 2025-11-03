@@ -1,0 +1,141 @@
+### Verificar salud del servidor
+GET http://localhost:8000/health
+
+###
+
+### Prueba simple del chatbot
+POST http://localhost:8000/api/chat
+Content-Type: application/json
+
+{
+  "question": "¿Cómo puedo ahorrar más dinero?",
+  "financial_data": {
+    "user": {
+      "id": 1,
+      "name": "Carlos",
+      "city": "Mexico",
+      "job": "Software Developer"
+    },
+    "finances": {
+      "income": {
+        "salary": 15000,
+        "other": 2000,
+        "total_income": 17000,
+        "period": "2025-09-16 to 2025-09-30"
+      },
+      "expenses": {
+        "categories": {
+          "food": {
+            "total": 2000,
+            "breakdown": {}
+          },
+          "transport": {
+            "total": 800,
+            "breakdown": {}
+          },
+          "entertainment": {
+            "total": 500,
+            "breakdown": {}
+          }
+        },
+        "total_expenses": 3300
+      },
+      "subscriptions": [
+        {
+          "name": "Netflix",
+          "amount": 199,
+          "next_charge_date": "2025-09-27",
+          "frequency": "biweekly"
+        },
+        {
+          "name": "Spotify",
+          "amount": 129,
+          "next_charge_date": "2025-10-01",
+          "frequency": "monthly"
+        }
+      ],
+      "budget": {
+        "period": "2025-09-23 to 2025-09-29",
+        "planned": 5000,
+        "spent": 3300,
+        "remaining": 1700
+      },
+      "savings": {
+        "goal": 3000,
+        "current": 1200,
+        "progress_percent": 40
+      }
+    },
+    "insights": {
+      "weekly_saving_potential": 1000,
+      "upcoming_expenses": [
+        {
+          "name": "Netflix",
+          "amount": 199,
+          "date": "2025-09-27"
+        }
+      ],
+      "recommendations": []
+    }
+  }
+}
+
+###
+
+### Pregunta sobre gastos
+POST http://localhost:8000/api/chat
+Content-Type: application/json
+
+{
+  "question": "¿En qué categoría gasto más?",
+  "financial_data": {
+    "user": {
+      "id": 1,
+      "name": "Carlos",
+      "city": "Mexico",
+      "job": "Software Developer"
+    },
+    "finances": {
+      "income": {
+        "salary": 15000,
+        "other": 2000,
+        "total_income": 17000,
+        "period": "2025-09-16 to 2025-09-30"
+      },
+      "expenses": {
+        "categories": {
+          "food": {
+            "total": 2000,
+            "breakdown": {}
+          },
+          "transport": {
+            "total": 800,
+            "breakdown": {}
+          },
+          "entertainment": {
+            "total": 500,
+            "breakdown": {}
+          }
+        },
+        "total_expenses": 3300
+      },
+      "subscriptions": [],
+      "budget": {
+        "period": "2025-09-23 to 2025-09-29",
+        "planned": 5000,
+        "spent": 3300,
+        "remaining": 1700
+      },
+      "savings": {
+        "goal": 3000,
+        "current": 1200,
+        "progress_percent": 40
+      }
+    },
+    "insights": {
+      "weekly_saving_potential": 1000,
+      "recommendations": []
+    }
+  }
+}
+

@@ -1,0 +1,104 @@
+{
+    "user": {
+        "id": 1,
+        "name": "Carlos",
+        "city": "Mexico",
+        "job": "Software Developer"
+    },
+    "finances": {
+        "income": {
+            "salary": 15000,
+            "other": 2000,
+            "total_income": 17000,
+            "period": "2025-09-16 to 2025-09-30"
+        },
+        "expenses": {
+            "categories": {
+                "food": {
+                    "total": 2000,
+                    "breakdown": {
+                        "monday": {
+                            "total": 100,
+                            "items": {
+                                "fruit": 10,
+                                "dinner": 90
+                            }
+                        },
+                        "tuesday": {
+                            "total": 300,
+                            "items": {
+                                "fruit": 20,
+                                "dinner": 280
+                            }
+                        }
+                    }
+                },
+                "transport": {
+                    "total": 800,
+                    "breakdown": {
+                        "monday": {
+                            "total": 100,
+                            "items": {
+                                "uber": 60,
+                                "bus": 40
+                            }
+                        }
+                    }
+                },
+                "entertainment": {
+                    "total": 500,
+                    "breakdown": {
+                        "friday": {
+                            "total": 500,
+                            "items": {
+                                "cinema": 300,
+                                "games": 200
+                            }
+                        }
+                    }
+                }
+            },
+            "total_expenses": 3300
+        },
+        "subscriptions": [
+            {
+                "name": "Netflix",
+                "amount": 199,
+                "next_charge_date": "2025-09-27",
+                "frequency": "biweekly"
+            },
+            {
+                "name": "Spotify",
+                "amount": 129,
+                "next_charge_date": "2025-10-01",
+                "frequency": "monthly"
+            }
+        ],
+        "budget": {
+            "period": "2025-09-23 to 2025-09-29",
+            "planned": 5000,
+            "spent": 3300,
+            "remaining": 1700
+        },
+        "savings": {
+            "goal": 3000,
+            "current": 1200,
+            "progress_percent": 40
+        }
+    },
+    "insights": {
+        "weekly_saving_potential": 1000,
+        "upcoming_expenses": [
+            {
+                "name": "Netflix",
+                "amount": 199,
+                "date": "2025-09-27"
+            }
+        ],
+        "recommendations": [
+            "Reduce dining out by $300 to save $1000 this week.",
+            "Plan ahead for your Netflix charge on 27/09 to avoid overdraft.",
+            "You are 40% towards your savings goal. Keep it up!"
+        ]
+    }
+}

@@ -1,0 +1,29 @@
+# Framework web ligero y rápido
+fastapi==0.115.0
+
+# Servidor ASGI para correr la app
+uvicorn==0.30.0
+
+# Cliente HTTP para comunicación con tu backend Node.js
+requests==2.31.0
+
+
+# Manejo de variables de entorno
+python-dotenv==1.0.1
+
+# Librerías auxiliares para JSON y logs
+pydantic==2.8.2
+loguru==0.7.2
+
+# Si planeas trabajar con datos estructurados
+pandas==2.2.2
+
+# (Opcional) Para correr tareas en segundo plano o colas
+celery==5.4.0
+
+# (Opcional) Para tokenización o embeddings locales
+sentence-transformers==3.0.1
+
+# Cliente de Google Gemini API
+google-generativeai
+google-genai    

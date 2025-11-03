@@ -312,19 +312,6 @@ FastAPI genera documentación interactiva automáticamente:
 - [ ] Implementar webhooks para notificaciones
 - [ ] Soporte para múltiples modelos de IA
 
----
-
-## 🐛 Reporte de Bugs
-
-Si encuentras un bug, por favor abre un [issue](https://github.com/tu-usuario/Chatbot_BackEnd_Admony/issues) con:
-
-- Descripción detallada del problema
-- Pasos para reproducir
-- Comportamiento esperado vs. actual
-- Logs relevantes
-- Entorno (OS, versión Python, etc.)
-
----
 
 ## 📄 Licencia
 
@@ -336,9 +323,9 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 
 **Proyecto Admony**
 
-- 📧 Email: contacto@admony.com
-- 🌐 Website: [admony.com](https://admony.com)
-- 💼 LinkedIn: [linkedin.com/company/admony](https://linkedin.com/company/admony)
+- 📧 Email: alonso_dlsilva@outlook.com
+- 🌐 Website: [alonso.com](alonsodev.vercel.app/Work)
+  
 
 ---
 

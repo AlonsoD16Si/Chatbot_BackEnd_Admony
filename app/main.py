@@ -38,7 +38,9 @@ app.add_middleware(
 # Inicializar componentes
 try:
     gemini_client = GeminiClient()
-    data_handler = DataHandler()
+    # DataHandler con URL de la API financiera (desde env o default)
+    api_base_url = os.getenv("FINANCIAL_API_BASE_URL", "http://localhost:3000")
+    data_handler = DataHandler(api_base_url=api_base_url)
     prompt_builder = PromptBuilder()
     logger.info("Componentes inicializados correctamente")
 except Exception as e:
@@ -46,17 +48,16 @@ except Exception as e:
     raise
 
 
-class FinancialDataBody(BaseModel):
-    """Modelo para el JSON financiero recibido."""
-    user: Dict[str, Any]
-    finances: Dict[str, Any]
-    insights: Optional[Dict[str, Any]] = None
-
-
 class ChatRequest(BaseModel):
     """Modelo para la petición del chatbot."""
     question: str
-    financial_data: FinancialDataBody
+    financial_data: Dict[str, Any]  # Puede tener formato {success: true, data: {...}} o directamente los datos
+
+
+class ChatAutoRequest(BaseModel):
+    """Modelo para la petición del chatbot con obtención automática de datos."""
+    question: str
+    bearer_token: str  # Token de autenticación para obtener datos de la API
 
 
 @app.get("/")
@@ -98,17 +99,30 @@ async def chat(request: ChatRequest):
     5. Retorna respuesta concisa
     """
     try:
-        user_name = request.financial_data.user.get("name", "Usuario")
+        # Obtener nombre del usuario para logging
+        financial_data_raw = request.financial_data
+        if isinstance(financial_data_raw, dict):
+            # Si tiene formato {success: true, data: {...}}
+            if "data" in financial_data_raw and "usuario" in financial_data_raw["data"]:
+                user_name = financial_data_raw["data"]["usuario"].get("nombre", "Usuario")
+            # Si tiene formato directo con "usuario"
+            elif "usuario" in financial_data_raw:
+                user_name = financial_data_raw["usuario"].get("nombre", "Usuario")
+            else:
+                user_name = "Usuario"
+        else:
+            user_name = "Usuario"
+        
         logger.info(f"Consulta recibida de {user_name}: {request.question}")
         
         # 1. Validar y procesar datos financieros recibidos
-        financial_data_dict = request.financial_data.model_dump()
-        financial_data = data_handler.validate_and_process(financial_data_dict)
+        # El data_handler maneja ambos formatos: {success: true, data: {...}} o directamente los datos
+        financial_data = data_handler.validate_and_process(financial_data_raw)
         
         if not financial_data:
             raise HTTPException(
                 status_code=400,
-                detail="Los datos financieros recibidos no son válidos"
+                detail="Los datos financieros recibidos no son válidos. Verifica el formato JSON."
             )
         
         logger.info(f"Datos financieros validados correctamente")
@@ -142,6 +156,70 @@ async def chat(request: ChatRequest):
         raise
     except Exception as e:
         logger.error(f"Error en endpoint /api/chat: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error interno del servidor: {str(e)}"
+        )
+
+
+@app.post("/api/chat/auto", response_model=ChatResponse)
+async def chat_auto(request: ChatAutoRequest):
+    """
+    Endpoint del chatbot con obtención automática de datos financieros.
+    
+    Flujo:
+    1. Recibe pregunta del usuario + bearer token
+    2. Obtiene datos financieros desde la API externa usando el token
+    3. Valida y procesa los datos financieros
+    4. Construye prompt con contexto + pregunta
+    5. Envía a Gemini API
+    6. Retorna respuesta concisa
+    """
+    try:
+        logger.info(f"Consulta recibida con auto-fetch: {request.question}")
+        
+        # 1. Obtener datos financieros desde la API externa
+        financial_data = await data_handler.fetch_financial_data_from_api(request.bearer_token)
+        
+        if not financial_data:
+            raise HTTPException(
+                status_code=401,
+                detail="No se pudieron obtener los datos financieros. Verifica que el token sea válido y que la API esté disponible."
+            )
+        
+        # Obtener nombre del usuario para logging
+        user_name = financial_data.get("usuario", {}).get("nombre", "Usuario")
+        logger.info(f"Datos financieros obtenidos correctamente para {user_name}")
+        
+        # 2. Construir prompt con contexto financiero + pregunta
+        prompt = prompt_builder.build_prompt(financial_data, request.question)
+        logger.debug(f"Prompt construido: {prompt[:200]}...")
+        
+        # 3. Obtener respuesta de Gemini
+        gemini_response = gemini_client.generate_response(
+            prompt=prompt,
+            max_tokens=300,  # Respuestas cortas y concisas
+            temperature=0.7
+        )
+        
+        if not gemini_response:
+            raise HTTPException(
+                status_code=500,
+                detail="Error al generar respuesta con Gemini"
+            )
+        
+        logger.info(f"Respuesta generada exitosamente para {user_name}")
+        
+        # 4. Retornar respuesta
+        return ChatResponse(
+            response=gemini_response,
+            success=True
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error en endpoint /api/chat/auto: {str(e)}")
         raise HTTPException(
             status_code=500,
             detail=f"Error interno del servidor: {str(e)}"

@@ -86,8 +86,9 @@ def main():
         "¿Cómo puedo ahorrar más dinero?",
         "¿En qué categoría gasto más?",
         "¿Estoy en buen camino para alcanzar mi meta de ahorro?",
-        "¿Qué suscripciones tengo y cuándo se cobran?",
-        "Dame consejos para reducir mis gastos"
+        "¿Cuál es mi situación financiera actual?",
+        "Dame consejos para reducir mis gastos",
+        "¿Cómo está la situación financiera de mi organización?"
     ]
     
     print("\n" + "=" * 60)

@@ -6,6 +6,7 @@ uvicorn==0.30.0
 
 # Cliente HTTP para comunicación con tu backend Node.js
 requests==2.31.0
+httpx==0.27.0  # Cliente HTTP asíncrono para FastAPI
 
 
 # Manejo de variables de entorno

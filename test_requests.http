@@ -139,3 +139,38 @@ Content-Type: application/json
   }
 }
 
+###
+
+### 🆕 NUEVO: Chat con Auto-Fetch de datos financieros
+### Este endpoint obtiene automáticamente los datos desde la API usando el bearer token
+POST http://localhost:8000/api/chat/auto
+Content-Type: application/json
+
+{
+  "question": "¿Cómo está mi salud financiera?",
+  "bearer_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZF9Vc3VhcmlvIjo5LCJDb3JyZW8iOiJsdWlzLnRvcnJlc0BleGFtcGxlLmNvbSIsIlJvbCI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3NjIyNzY3ODAsImV4cCI6MTc2Mjg4MTU4MH0.rK44JNPmNbJq0c65Oo4xYw-EKFpQ_qBW3b9HAgiGXEI"
+}
+
+###
+
+### 🆕 Pregunta sobre ahorros con Auto-Fetch
+POST http://localhost:8000/api/chat/auto
+Content-Type: application/json
+
+{
+  "question": "¿Cómo puedo alcanzar mis objetivos de ahorro más rápido?",
+  "bearer_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZF9Vc3VhcmlvIjo5LCJDb3JyZW8iOiJsdWlzLnRvcnJlc0BleGFtcGxlLmNvbSIsIlJvbCI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3NjIyNzY3ODAsImV4cCI6MTc2Mjg4MTU4MH0.rK44JNPmNbJq0c65Oo4xYw-EKFpQ_qBW3b9HAgiGXEI"
+}
+
+###
+
+### 🆕 Pregunta sobre gastos de la organización con Auto-Fetch
+POST http://localhost:8000/api/chat/auto
+Content-Type: application/json
+
+{
+  "question": "¿Quién ha gastado más en la familia este mes?",
+  "bearer_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZF9Vc3VhcmlvIjo5LCJDb3JyZW8iOiJsdWlzLnRvcnJlc0BleGFtcGxlLmNvbSIsIlJvbCI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3NjIyNzY3ODAsImV4cCI6MTc2Mjg4MTU4MH0.rK44JNPmNbJq0c65Oo4xYw-EKFpQ_qBW3b9HAgiGXEI"
+}
+
+###

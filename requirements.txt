@@ -16,15 +16,6 @@ python-dotenv==1.0.1
 pydantic==2.8.2
 loguru==0.7.2
 
-# Si planeas trabajar con datos estructurados
-pandas==2.2.2
-
-# (Opcional) Para correr tareas en segundo plano o colas
-celery==5.4.0
-
-# (Opcional) Para tokenización o embeddings locales
-sentence-transformers==3.0.1
-
 # Cliente de Google Gemini API
 google-generativeai
-google-genai    
+google-genai

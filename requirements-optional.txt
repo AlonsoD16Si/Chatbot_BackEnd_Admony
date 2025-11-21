@@ -1,0 +1,12 @@
+# Dependencias opcionales útiles solo en entornos locales
+# No se instalan en Render para evitar compilaciones innecesarias
+
+# Si planeas trabajar con datos estructurados
+pandas==2.2.2
+
+# Para tareas en segundo plano o colas
+celery==5.4.0
+
+# Para tokenización o embeddings locales
+sentence-transformers==3.0.1
+

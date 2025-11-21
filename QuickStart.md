@@ -7,8 +7,11 @@
 venv\Scripts\activate  # Windows
 # source venv/bin/activate  # Linux/Mac
 
-# Instalar dependencias
+# Instalar dependencias base
 pip install -r requirements.txt
+
+# (Opcional) Instalar extras locales como pandas o Celery
+pip install -r requirements-optional.txt
 ```
 
 ## 2. Configurar API Key de Gemini

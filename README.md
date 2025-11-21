@@ -53,7 +53,8 @@ Chatbot_BackEnd_Admony/
 │   ├── test_chatbot.py
 │   ├── test_simple.py
 │   └── test_data.json
-├── requirements.txt         # Dependencias Python
+├── requirements.txt         # Dependencias base
+├── requirements-optional.txt # Dependencias opcionales (solo local)
 ├── .env                     # Variables de entorno (no incluido)
 └── README.md
 ```
@@ -107,6 +108,9 @@ source venv/bin/activate
 
 ```bash
 pip install -r requirements.txt
+
+# Opcional: instala extras locales (pandas, Celery, embeddings)
+pip install -r requirements-optional.txt
 ```
 
 4. **Configurar variables de entorno**
@@ -270,15 +274,15 @@ FastAPI genera documentación interactiva automáticamente:
 
 ## 🛠️ Stack Tecnológico
 
-| Tecnología           | Versión | Propósito              |
-| -------------------- | ------- | ---------------------- |
-| **FastAPI**          | 0.115.0 | Framework web          |
-| **Uvicorn**          | 0.30.0  | Servidor ASGI          |
-| **Google Gemini AI** | Latest  | Motor de IA            |
-| **Pydantic**         | 2.8.2   | Validación de datos    |
-| **Loguru**           | 0.7.2   | Sistema de logging     |
-| **Pandas**           | 2.2.2   | Procesamiento de datos |
-| **Python**           | 3.12+   | Lenguaje base          |
+| Tecnología            | Versión | Propósito                                      |
+| --------------------- | ------- | ---------------------------------------------- |
+| **FastAPI**           | 0.115.0 | Framework web                                  |
+| **Uvicorn**           | 0.30.0  | Servidor ASGI                                  |
+| **Google Gemini AI**  | Latest  | Motor de IA                                    |
+| **Pydantic**          | 2.8.2   | Validación de datos                            |
+| **Loguru**            | 0.7.2   | Sistema de logging                             |
+| **Python**            | 3.12+   | Lenguaje base                                  |
+| **Extras opcionales** | -       | Pandas/Celery/Sentence Transformers solo local |
 
 ---
 
@@ -312,7 +316,6 @@ FastAPI genera documentación interactiva automáticamente:
 - [ ] Implementar webhooks para notificaciones
 - [ ] Soporte para múltiples modelos de IA
 
-
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
@@ -325,7 +328,6 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 
 - 📧 Email: alonso_dlsilva@outlook.com
 - 🌐 Website: [alonso.com](alonsodev.vercel.app/Work)
-  
 
 ---
 

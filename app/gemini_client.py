@@ -23,7 +23,7 @@ class GeminiClient:
         
         # Usar el nuevo SDK de Google Gemini
         self.client = genai.Client(api_key=self.api_key)
-        self.model_name = "gemini-2.0-flash-exp"
+        self.model_name = "gemini-2.0-flash"
         logger.info("Cliente Gemini inicializado correctamente")
     
     def generate_response(
